@@ -214,41 +214,75 @@ function login() {
         });
 }
 
-function register() {
-    var name = document.querySelector('input[name="name"]').value
-    var email = document.querySelector('input[name="email"]').value
-	var pass_word = document.querySelector('input[name="password"]').value
-	var address = document.querySelector('input[name="address"]').value
-	var phone_number = document.querySelector('input[name="phone_number"]').value
-    var user = {
-        "name": name,
-        "email": email,
-        "password": pass_word,
-        "address": address,
-        "phone_number": phone_number
-    };
-	
-	
-    apiUrl = domain + "/register";
-    fetch(apiUrl, {
-            method: 'POST',
+async function register() {
+    var name = document.querySelector('input[name="name"]').value;
+    var email = document.querySelector('input[name="email"]').value;
+    var pass_word = document.querySelector('input[name="password"]').value;
+    var address = document.querySelector('input[name="address"]').value;
+    var phone_number = document.querySelector('input[name="phone_number"]').value;
+
+    try {
+        const response = await fetch(domain + "/getAddress/" + address, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-            },
-			body: JSON.stringify(user)
-        })
-        .then(function(response) {
-            if (response.ok) {
-                alert("Register successfully!");
-                location.replace("/19.9.2023/templatenew/web/user/login.html");
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            address_id = data.id;
+
+            const dataResponse = await fetch(domain + "/getPN/" + phone_number, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (dataResponse.ok) {
+                const data1 = await dataResponse.json();
+                phone_number_id = data1.id;
+
+                var user = {
+                    "name": name,
+                    "email": email,
+                    "password": pass_word,
+                    "address_id": address_id,
+                    "phone_number_id": phone_number_id
+                };
+
+                apiUrl = domain + "/register";
+                fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
+                    })
+                    .then(function(response) {
+                        if (response.ok) {
+                            alert("Register successfully!");
+                            location.replace("/19.9.2023/templatenew/web/user/login.html");
+                        } else {
+                            alert('Response not OK');
+                            location.reload();
+                        }
+                    })
+                    .catch(function(error) {
+                        alert("Error: " + error.message);
+                    });
             } else {
                 alert('Response not OK');
                 location.reload();
             }
-        })
-        .catch(function(error) {
-            alert("Error: " + error.message);
-        });
+        } else {
+            alert('Response not OK');
+            location.reload();
+        }
+    } catch (error) {
+        alert("Error: " + error.message);
+    }
 }
 
 function handleLogin(){
@@ -316,31 +350,7 @@ function information_user(){
 															</div>
 														</div>
 														
-														<div class="row">
-															<div class="col-md-12 col-lg-6">
-																<div class="form-item w-100">
-																	<label class="form-label my-3">Address:</label>
-																</div>
-															</div>
-															<div class="col-md-12 col-lg-6">
-																<div class="form-item w-100">
-																	 <label class="form-label my-3">${data.address}</label>                    
-																</div>
-															</div>
-														</div>
 														
-														<div class="row">
-															<div class="col-md-12 col-lg-6">
-																<div class="form-item w-100">
-																	<label class="form-label my-3">Phone Number:</label>
-																</div>
-															</div>
-															<div class="col-md-12 col-lg-6">
-																<div class="form-item w-100">
-																	 <label class="form-label my-3">${data.phone_number}</label>                    
-																</div>
-															</div>
-														</div>
 														<br><br>
 														<a href="/19.9.2023/templatenew/web/user/login.html" type="button" class="btn btn-danger" style="margin-right: 30px; margin-top: 0px;" onclick="logout()">Logout</a>
 													</div>
@@ -403,19 +413,8 @@ function getUserInformation() {
 						<input type="hidden" id="email" name="email" value="${data.email}">
 						<input type="hidden" id="password" name="password" value="${data.password}">
 
-                        <div class="form-itemp">
-                            <label class="form-label my-3">Address</label>
-                            <input type="text" id="address" name="address" 
-                                   class="form-control" required value="${data.address}">
-                            <span class="form-message"></span>
-                        </div>
-
-                        <div class="form-item">
-                            <label class="form-label my-3">Phone Number</label>
-                            <input type="text" id="phone_number" name="phone_number" 
-                                   required value="${data.phone_number}" class="form-control">
-                            <span class="form-message"></span>
-                        </div>
+						<input type="hidden" id="address" name="address" value="${data.address}">
+						<input type="hidden" id="phone_number" name="phone_number" value="${data.phone_number}">
                         <br>
 
 						<div class="card-footer">
