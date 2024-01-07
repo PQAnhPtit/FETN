@@ -24,7 +24,7 @@ function getAllUser() {
                 <td>${user.address}</td>
                 <td>${user.phone_number}</td>
 				<td>
-				   <a class="btn btn-block btn-warning btn-sm" href="/19.9.2023/templatenew/admin/user/edit.html?id=${user.id}">Edit</a>
+				   <a class="btn btn-block btn-warning btn-sm" href="/FETN/admin/user/edit.html?id=${user.id}">Edit</a>
                             <Button onclick="deleteUser(${user.id})"
                                class="btn btn-block btn-danger btn-sm"
                                onclick="return confirm('Are you sure want to delete it?')">Delete</Button>
@@ -198,7 +198,7 @@ function login() {
         .then(function(response) {
             if (response.ok) {
                 alert("Login successfully!");
-                location.replace("/19.9.2023/templatenew/index.html");
+                location.replace("/FETN/index.html");
             } else {
                 alert('Response not OK');
                 location.reload();
@@ -263,7 +263,7 @@ async function register() {
                     .then(function(response) {
                         if (response.ok) {
                             alert("Register successfully!");
-                            location.replace("/19.9.2023/templatenew/web/user/login.html");
+                            location.replace("/FETN/web/user/login.html");
                         } else {
                             alert('Response not OK');
                             location.reload();
@@ -290,13 +290,13 @@ function handleLogin(){
 	var listUser = document.querySelector('#hllogin');
 	if(userId == null){
 		var content = `
-        <a href="/19.9.2023/templatenew/web/user/login.html" class="my-auto">
+        <a href="/FETN/web/user/login.html" class="my-auto">
 			Login		
         </a>`
 		listUser.innerHTML = content;
 	}else{
 		var content = `
-		<a href="/19.9.2023/templatenew/web/user/information.html" class="my-auto">
+		<a href="/FETN/web/user/information.html" class="my-auto">
 			<i class="fas fa-user fa-2x"></i>		
         </a>`
 		listUser.innerHTML = content;
@@ -352,7 +352,7 @@ function information_user(){
 														
 														
 														<br><br>
-														<a href="/19.9.2023/templatenew/web/user/login.html" type="button" class="btn btn-danger" style="margin-right: 30px; margin-top: 0px;" onclick="logout()">Logout</a>
+														<a href="/FETN/web/user/login.html" type="button" class="btn btn-danger" style="margin-right: 30px; margin-top: 0px;" onclick="logout()">Logout</a>
 													</div>
 												</div>
 											</div>
@@ -372,10 +372,10 @@ function sidebarUser(){
 	var listUser = document.querySelector('#sidebar');
 	content = `
 	    <div class="mb-2">
-            <a href="/19.9.2023/templatenew/web/user/edit-user.html?id=${userId}">Sửa thông tin cá nhân</a>
+            <a href="/FETN/web/user/edit-user.html?id=${userId}">Sửa thông tin cá nhân</a>
         </div>
 		<div class="mb-2">
-            <a href="/19.9.2023/templatenew/web/user/doi-pass.html?id=${userId}">Thay đổi mật khẩu</a>
+            <a href="/FETN/web/user/doi-pass.html?id=${userId}">Thay đổi mật khẩu</a>
         </div>`
 	listUser.innerHTML = content;
 }
@@ -507,7 +507,7 @@ function doiPassUser() {
         .then(function(response) {
             if (response.ok) {
                 alert("Change Password successfully!");
-                location.replace("/19.9.2023/templatenew/web/user/information.html");
+                location.replace("/FETN/web/user/information.html");
             } else {
                 alert('Response not OK');
                 location.reload();
@@ -523,7 +523,7 @@ function handleMyPage(){
 	var listUser = document.querySelector('#my-page');
 	var content = `
 		 <a class="navbar-bar-item navbar-button navbar-hide-small barex bar-item-hover navbar-padding-24" 
-		   href="/19.9.2023/templatenew/web/user/my-page.html?id=${userId}" title="my_page">My Page</a>`
+		   href="/FETN/web/user/my-page.html?id=${userId}" title="my_page">My Page</a>`
 	listUser.innerHTML = content;
 }
 
@@ -548,7 +548,7 @@ function getAllCategory() {
 				<td>${category.id}</td>
                 <td>${category.name}</td>
 				<td>
-				   <a class="btn btn-block btn-warning btn-sm" href="/19.9.2023/templatenew/admin/category/edit.html?id=${category.id}">Edit</a>
+				   <a class="btn btn-block btn-warning btn-sm" href="/FETN/admin/category/edit.html?id=${category.id}">Edit</a>
                             <Button onclick="deleteCategory(${category.id})"
                                class="btn btn-block btn-danger btn-sm"
                                onclick="return confirm('Are you sure want to delete it?')">Delete</Button>
@@ -595,7 +595,7 @@ function createCategory() {
         .then(function(response) {
             if (response.ok) {
                 alert("Category add successfully!");
-                location.replace("/19.9.2023/templatenew/admin/category/list.html");
+                location.replace("/FETN/admin/category/list.html");
             } else {
                 alert('Response not OK');
                 location.reload();
@@ -653,7 +653,7 @@ function updateCategory() {
         .then(function(response) {
             if (response.ok) {
                 alert("Category Update successfully!");
-                location.replace("/19.9.2023/templatenew/admin/category/list.html");
+                location.replace("/FETN/admin/category/list.html");
             } else {
                 alert('Response not OK');
                 location.reload();
@@ -676,7 +676,7 @@ function navbarCate() {
         .then(datas => {
             var listUser = document.querySelector('#listCategory');
             var content = datas.map(function(category) {
-                return `<a href="/19.9.2023/templatenew/web/document/khoTaiLieu.html?id=${category.id}" 
+                return `<a href="/FETN/web/document/khoTaiLieu.html?id=${category.id}" 
 				class="dropdown-item">${category.name}</a>`;
             });
             listUser.innerHTML = content.join('');
@@ -702,7 +702,7 @@ function getAllDocument() {
                 <td>${user.description}</td>
                 <td>${user.link}</td>
 				<td>
-				   <a class="btn btn-block btn-warning btn-sm" href="/19.9.2023/templatenew/admin/document/edit.html?id=${user.id}">Edit</a>
+				   <a class="btn btn-block btn-warning btn-sm" href="/FETN/admin/document/edit.html?id=${user.id}">Edit</a>
                             <Button onclick="deleteDocument(${user.id})"
                                class="btn btn-block btn-danger btn-sm"
                                onclick="return confirm('Are you sure want to delete it?')">Delete</Button>
@@ -770,7 +770,7 @@ function createDocument() {
         .then(function(response) {
             if (response.ok) {
                 alert("Document add successfully!");
-                location.replace("/19.9.2023/templatenew/admin/document/list.html");
+                location.replace("/FETN/admin/document/list.html");
             } else {
                 alert('Response not OK');
                 location.reload();
@@ -846,7 +846,7 @@ function updateDocument() {
         .then(function(response) {
             if (response.ok) {
                 alert("Document Update successfully!");
-                location.replace("/19.9.2023/templatenew/admin/document/list.html");
+                location.replace("/FETN/admin/document/list.html");
             } else {
                 alert('Response not OK');
                 location.reload();
@@ -882,7 +882,7 @@ function driverList() {
         
         var folderContent = folderData.map(function(item) {
             return `
-                <a href="/19.9.2023/templatenew/web/document/driver/my-driver.html?id=${item.id}">
+                <a href="/FETN/web/document/driver/my-driver.html?id=${item.id}">
                     <button style="height: 100px; text-align: center; width: 15%; background-color: yellow; margin: 30px; float: left">${item.name}</button>
                 </a>
             `;
@@ -890,7 +890,7 @@ function driverList() {
 
         var fileContent = fileData.map(function(item) {
             return `
-			<a href="/19.9.2023/templatenew/web/document/upl.html?id=${item.link}&id1=${item.thumbnailLink}">
+			<a href="/FETN/web/document/upl.html?id=${item.link}&id1=${item.thumbnailLink}">
                 <button style="height: 150px; text-align: center; width: 15%; background-color: blue; margin: 30px; float: left">
                     <img src="${item.thumbnailLink}" alt="Image" style="width:100% ;height:130px;">
                 </button>
@@ -970,7 +970,7 @@ async function xlUpload() {
                 });
 
                 if (uploadResponse.ok) {
-				location.replace(`/19.9.2023/templatenew/web/document/khoTaiLieu.html?id=${category}`);
+				location.replace(`/FETN/web/document/khoTaiLieu.html?id=${category}`);
                 } else {
                     alert('Response not OK');
                     location.reload();
@@ -1048,7 +1048,7 @@ async function getAllDocumentKho() {
 								<p>Ngày đăng: ${data.date_post}</p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p>Thể loại: ${data3.name}</p>
-                                    <a href="/19.9.2023/templatenew/web/document/detail.html?id=${data.id}" class="btn border border-secondary rounded-pill px-3 text-primary">Detail</a>
+                                    <a href="/FETN/web/document/detail.html?id=${data.id}" class="btn border border-secondary rounded-pill px-3 text-primary">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -1120,7 +1120,7 @@ async function getAllDocumentHome() {
 								<p>Ngày đăng: ${data.date_post}</p>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p>Thể loại: ${data3.name}</p>
-                                    <a href="/19.9.2023/templatenew/web/document/detail.html?id=${data.id}" class="btn border border-secondary rounded-pill px-3 text-primary">Detail</a>
+                                    <a href="/FETN/web/document/detail.html?id=${data.id}" class="btn border border-secondary rounded-pill px-3 text-primary">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -1240,7 +1240,7 @@ function getNavListCategory() {
                 return `
 				<li>
                     <div class="d-flex justify-content-between fruite-name">
-					<a href="/19.9.2023/templatenew/web/document/khoTaiLieu.html?id=${category.id}">${category.name}</a>
+					<a href="/FETN/web/document/khoTaiLieu.html?id=${category.id}">${category.name}</a>
                 </li>
 			    `;
             });
@@ -1341,7 +1341,7 @@ function search() {
                 return `
 				 <div style="background-color: PeachPuff; width: 93%; height: 70px; margin-left: 30px; border-bottom: 1px solid Gray;">
                 <h5 style="margin-top: 25px; float: left; margin-left: 50px;">${data.name}</h5>
-                <a href="/19.9.2023/templatenew/web/document/detail.html?id=${data.id}" type="button" class="btn btn-success" style="margin-right: 30px; margin-top: 15px; float: right;">Detail</a>
+                <a href="/FETN/web/document/detail.html?id=${data.id}" type="button" class="btn btn-success" style="margin-right: 30px; margin-top: 15px; float: right;">Detail</a>
                 </div>
 				`;
             });
@@ -1380,7 +1380,7 @@ async function getAllComment() {
 
                 var content = `
                     <div class="d-flex">
-                                            <img src="/19.9.2023/templatenew/img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
+                                            <img src="/FETN/img/avatar.jpg" class="img-fluid rounded-circle p-3" style="width: 100px; height: 100px;" alt="">
                                             <div class="">
                                                 <p class="mb-2" style="font-size: 14px;">${data.date_at}</p>
 												<div class="d-flex justify-content-between">
